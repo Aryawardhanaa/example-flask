@@ -13,7 +13,7 @@ def hello_world():
 def hellow():
     response = client.chat.completions.create(
     model="gpt-3.5-turbo",
-    messages=[{"role": "user", "content": "Can you Help Me?"}]
+    messages=[{"role": "user", "content": "explain to me about express js"}]
 )
     return response.choices[0].message.content
 if __name__ == "__main__":
