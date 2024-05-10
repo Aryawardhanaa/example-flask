@@ -6,13 +6,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello from Koye'
+    return 'Hello from farhan'
 
 
 @app.route('/test')
 def hellow():
     response = client.chat.completions.create(
-    model="gpt-4-turbo",
+    model="gpt-3.5-turbo",
     messages=[{"role": "user", "content": "explain to me about react js"}]
 )
     return response.choices[0].message.content
