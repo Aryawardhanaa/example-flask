@@ -1,20 +1,18 @@
-from flask import Flask
-from g4f.client import Client # type: ignore
+from flask import Flask, request, jsonify
+import translators as ts
 
-client = Client()
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello from farhan'
+@app.route('/translate', methods=['POST'])
+def translate():
+    data = request.json
+    query_text = data.get('text')
+    translator = data.get('translator', 'bing')
+    from_language = data.get('from_language', 'auto')
+    to_language = data.get('to_language', 'en')
 
+    translated_text = ts.translate_text(query_text, translator=translator, from_language=from_language, to_language=to_language)
+    return jsonify({'translated_text': translated_text})
 
-@app.route('/test')
-def hellow():
-    response = client.chat.completions.create(
-    model="gpt-3.5-turbo",
-    messages=[{"role": "user", "content": "explain to me about react js"}]
-)
-    return response.choices[0].message.content
-if __name__ == "__main__":
-    app.run()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)

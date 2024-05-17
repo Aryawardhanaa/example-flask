@@ -1,3 +1,16 @@
 
 ###
 GET http://127.0.0.1:5000/test
+###
+POST http://127.0.0.1:5000/translate
+Content-Type: application/json
+
+{
+  "text": "Infertility Treatment Doubles Risk Of Heart Disease Within Year After Delivery: Study",
+  "translator": "bing",
+  "from_language": "en",
+  "to_language": "id"
+}
+ 
+###
+GET https://wispy-gecko-cobacoba-cbb219c9.koyeb.app/test
